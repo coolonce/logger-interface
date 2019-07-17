@@ -1,0 +1,26 @@
+{
+  "name": "coolonce/loggerInterface",
+  "description": "This package allows you to send data for logging to the HTTP daemon associated with the clickhouse",
+  "keywords": ["logging", "log"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kiselev Vadim",
+      "email": "coolonce@yandex.ru"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "require": {
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Logger\\": "src/"
+    }
+  }
+
+}
