@@ -11,7 +11,7 @@ namespace Logger;
 
 interface LoggerInterface
 {
-    public function Send(int $user_id = null, int $act_id = null, int $service_id = null, string $data = null, string $function_name = null):bool;
+    public function Send(int $user_id = null, int $act_id = null, int $service_id = null, string $data = null, string $function_name = null);
 
     public function SetUrl(string $url = null);
 

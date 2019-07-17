@@ -33,7 +33,6 @@ class Logger implements LoggerInterface
         ];
         $data = json_encode($data);
         $requset = $client->requestAsync('POST', $this->url.$this->port, ['body'=>$data]);
-        return $requset->getStatusCode() == 200;
     }
 
     public function SetUrl(string $url = null)
