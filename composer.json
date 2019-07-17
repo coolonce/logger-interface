@@ -1,5 +1,5 @@
 {
-  "name": "coolonce/loggerInterface",
+  "name": "coolonce/logger-interface",
   "description": "This package allows you to send data for logging to the HTTP daemon associated with the clickhouse",
   "keywords": ["logging", "log"],
   "type": "library",
