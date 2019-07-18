@@ -18,11 +18,17 @@
     "guzzlehttp/guzzle": "^6.3"
   },
   "require-dev": {
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "phpunit/phpunit": "^8"
   },
   "autoload": {
     "psr-4": {
       "Logger\\": "src/"
+    }
+  }
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   }
 }
