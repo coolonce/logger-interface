@@ -32,7 +32,7 @@ class Logger implements LoggerInterface
           'function_name' => $function_name,
         ];
         $data = json_encode($data);
-        $client->requestAsync('POST', $this->url.$this->port, ['body'=>$data]);
+        $client->request('POST', $this->url.':'.$this->port, ['body'=>$data]);
     }
 
     public function SetUrl(string $url = null)
