@@ -21,7 +21,7 @@ class Logger implements LoggerInterface
         $this->port = $port;
     }
 
-    public function Send(int $user_id = null, int $act_id = null, int $service_id = null, string $data = null, string $function_name = null) :bool
+    public function Send(int $user_id = null, int $act_id = null, int $service_id = null, string $data = null, string $function_name = null)
     {
         $client = new Client();
         $data = [
@@ -32,7 +32,7 @@ class Logger implements LoggerInterface
           'function_name' => $function_name,
         ];
         $data = json_encode($data);
-        $requset = $client->requestAsync('POST', $this->url.$this->port, ['body'=>$data]);
+        $client->requestAsync('POST', $this->url.$this->port, ['body'=>$data]);
     }
 
     public function SetUrl(string $url = null)
