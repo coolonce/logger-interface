@@ -5,7 +5,6 @@
  * Date: 21.07.19
  * Time: 14:12
  */
-use Logger\Logger;
 
 return [
     'type' => env('LOG_CHANNEL', 'clickhouse'),
