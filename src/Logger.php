@@ -28,7 +28,7 @@ class Logger implements LoggerInterface
 
     public function __construct(string $url = null, string $port = null, string $type = 'clickhouse')
     {
-        $this->settings = config('widgets');
+        $this->settings = config('logger');
 
         $this->url = $url === null ? $this->settings['url'] : $url;
         $this->port = $port === null ? $this->settings['port'] : $port;
