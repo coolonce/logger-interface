@@ -15,6 +15,8 @@ class LoggerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . '/../config/' => config_path() . '/']);
+
+        $this->publishes([__DIR__ . '/../app/' => app_path() . '/']);
     }
     public function register()
     {
