@@ -16,6 +16,7 @@ class Logger implements LoggerInterface
     protected $url = null;
     protected $port = null;
     protected $type = null;
+    protected $path = null;
 
     protected $settings;
 
@@ -26,13 +27,14 @@ class Logger implements LoggerInterface
     ];
 
 
-    public function __construct(string $url = null, string $port = null, string $type = 'clickhouse')
+    public function __construct(string $url = null, string $port = null, string $path = null, string $type = 'clickhouse')
     {
         $this->settings = config('logger');
 
         $this->url = $url === null ? $this->settings['url'] : $url;
         $this->port = $port === null ? $this->settings['port'] : $port;
         $this->type = $this->settings['type'] != null ? $this->settings['type'] : $type;
+        $this->path = $this->settings['path'] != null ? $this->settings['path'] : $path;
     }
 
     public function Send(int $user_id = 0, int $act_id = 0, int $service_id = 0, string $data = '', string $function_name = '')
