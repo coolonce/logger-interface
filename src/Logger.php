@@ -7,6 +7,7 @@
  */
 
 namespace Logger;
+
 use GuzzleHttp\Client;
 
 class Logger implements LoggerInterface
@@ -15,6 +16,8 @@ class Logger implements LoggerInterface
     protected $url = null;
     protected $port = null;
     protected $type = null;
+
+    protected $settings;
 
     protected $TYPELOGGERS = [
         'clickhouse' => 'clickhouse',
@@ -25,12 +28,14 @@ class Logger implements LoggerInterface
 
     public function __construct(string $url = null, string $port = null, string $type = 'clickhouse')
     {
-        $this->url = $url;
-        $this->port = $port;
-        $this->type = $type;
+        $this->settings = config('widgets');
+
+        $this->url = $url === null ? $this->settings['url'] : $url;
+        $this->port = $port === null ? $this->settings['port'] : $port;
+        $this->type = $this->settings['type'] != null ? $this->settings['type'] : $type;
     }
 
-    public function Send(int $user_id = null, int $act_id = null, int $service_id = null, string $data = null, string $function_name = null)
+    public function Send(int $user_id = 0, int $act_id = 0, int $service_id = 0, string $data = '', string $function_name = '')
     {
         $data = [
             'user_id' => $user_id,
@@ -41,20 +46,23 @@ class Logger implements LoggerInterface
         ];
 
         $name = $this->TYPELOGGERS[$this->type];
-       try{
-           $this->$name($data);
-       }catch(\Exception $e){}
+        try {
+            $this->$name($data);
+        } catch (\Exception $e) {
+        }
     }
 
 
-    public function clickhouse(array $data = []){
+    public function clickhouse(array $data = [])
+    {
         $client = new Client();
         $data = json_encode($data);
-        $client->request('POST', $this->url.':'.$this->port, ['body'=>$data]);
+        $client->request('POST', $this->url . ':' . $this->port, ['body' => $data]);
     }
 
-    public function file(array $data = []){
-        file_put_contents(__DIR__.'/logLogger.txt', var_export(json_encode($data).'\r\n',1), FILE_APPEND);
+    public function file(array $data = [])
+    {
+        file_put_contents(__DIR__ . '/logLogger.txt', var_export(json_encode($data) . '\r\n', 1), FILE_APPEND);
     }
 
     public function mixed(array $data = [])
@@ -62,8 +70,6 @@ class Logger implements LoggerInterface
         $this->clickhouse($data);
         $this->file($data);
     }
-
-
 
 
     public function SetUrl(string $url = null)
