@@ -10,6 +10,8 @@ namespace Logger;
 
 use Illuminate\Support\ServiceProvider;
 
+use App;
+
 class LoggerServiceProvider extends ServiceProvider
 {
     public function boot()
