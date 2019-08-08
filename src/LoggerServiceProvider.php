@@ -10,7 +10,6 @@ namespace Logger;
 
 use Illuminate\Support\ServiceProvider;
 
-use App;
 
 class LoggerServiceProvider extends ServiceProvider
 {
@@ -23,8 +22,8 @@ class LoggerServiceProvider extends ServiceProvider
     public function register()
     {
 
-        App::singleton('logger', function(){
-            return new Logger();
+        $this->app->singleton(Logger::class, function(){
+            return new Logger;
         });
 
     }
