@@ -28,7 +28,7 @@ class Logger implements LoggerInterface
     ];
 
 
-    public function __construct(string $url = null, string $port = null, string $path = null, string $type = 'clickhouse', int $user_id = -1)
+    public function __construct(int $user_id = -1, string $url = null, string $port = null, string $path = null, string $type = 'clickhouse')
     {
         $this->settings = config('logger');
 
@@ -39,7 +39,7 @@ class Logger implements LoggerInterface
         $this->user_id = $user_id;
     }
 
-    public function Send(int $user_id = 0, int $act_id = 0, int $service_id = 0, string $data = '', string $function_name = '')
+    public function Send(int $act_id = 0, int $service_id = 0, string $data = '', string $function_name = '')
     {
         $data = [
             'user_id' => $this->user_id,
